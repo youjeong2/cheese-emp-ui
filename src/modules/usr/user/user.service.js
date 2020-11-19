@@ -76,7 +76,7 @@ export const userService = {
     const req = {
         method: c.post,
         url: 'http://192.168.0.21:8080/api/signup',
-        data: {id:user_id, password:password, name:name, phone:phone, email:email },
+        data: {user_id:user_id, password:password, name:name, phone:phone, email:email },
         auth: c.auth
     }
     const resp = await axios(req)

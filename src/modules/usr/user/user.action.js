@@ -41,6 +41,8 @@ const userReducer = handleActions(
     initialState,
   )
 
+  
+
 
 // Actions
 export const userActions = {
@@ -56,6 +58,7 @@ export const userActions = {
 ///////////////////////////////////////
 
 function register(user) {
+    alert(`BBBBB ${user}`)
     return dispatch => {
         dispatch(request(user));
   
@@ -63,7 +66,7 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    
+                    alert(`이름 ========== : ${user.name}`)
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
