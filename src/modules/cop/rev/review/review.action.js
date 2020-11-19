@@ -15,30 +15,32 @@ export const getReviewSuccess = createAction(reviewConstants.REVIEW_SUCCESS);
 
 // Initial State
 const initialState = {
-    review: {} 
+    reviews: [] 
 }
 
 // Reducer
 const reviewReducer = handleActions(
-    { [reviewConstants.REVIEW_SUCCESS]: (state, action) => ({ review: action.review }) },
+    { [reviewConstants.REVIEW_SUCCESS]: (state, action) => ({ reviews: action.reviews }),
+ },
     initialState
   )
 
   //Action
   export const reviewActions = {
-    getAll
+    getReivew
 
   }
 
-  function getAll() {
+  function getReivew(reviews) {
         return dispatch => {
-            dispatchEvent(request())
+            dispatch(request(reviews))
 
-            reviewService.getAll()
+            reviewService.getReivew(reviews)
             .then(
-                review => {
-                    dispatch(success(review))
-                    history.push('/review')
+                reviews => {
+                    dispatch(success(reviews))
+                    console.log(reviews)
+                    // history.push('/review')
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -46,9 +48,9 @@ const reviewReducer = handleActions(
             )
         }
 
-        function request() { return { type: reviewConstants.REVIEW_REQUEST } }
-        function success(review) { return { type: reviewConstants.REVIEW_SUCCESS } }
-        function failure(review) { return { type: reviewConstants.REVIEW_FAILURE } }
+        function request() { return { type: reviewConstants.REVIEW_REQUEST, reviews } }
+        function success(reviews) { return { type: reviewConstants.REVIEW_SUCCESS, reviews } }
+        function failure(error) { return { type: reviewConstants.REVIEW_FAILURE, error } }
     }
 
     export default reviewReducer

@@ -60,6 +60,7 @@ export const userActions = {
 function register(user) {
     alert(`BBBBB ${user}`)
     return dispatch => {
+        // 리듀서로 보내기
         dispatch(request(user));
   
         userService.register(user)
