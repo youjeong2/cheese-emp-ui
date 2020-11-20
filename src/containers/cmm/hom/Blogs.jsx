@@ -6,7 +6,8 @@ import { ReactComponent as SvgDecoratorBlob1 } from "../../../components/images/
 import { ReactComponent as SvgDecoratorBlob2 } from "../../../components/images/svg-decorator-blob-3.svg";
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { cheeseActions } from '../../../modules/cop/itm/cheese/cheese.action.js'
 
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24`;
@@ -56,38 +57,54 @@ export default function Blogs() {
       url: "https://timerse.com"
     }
   ];
-  const [cheeses, setCheeses] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [cheeses, setCheeses] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchCheeses = async () => {
-      try {
+  // useEffect(() => {
+  //   const fetchCheeses = async () => {
+  //     try {
         
-        setError(null);
-        setCheeses(null);
+  //       setError(null);
+  //       setCheeses(null);
         
-        setLoading(true);
-        const response = await axios.get(
-          'http://localhost:8080/api/cheeses'
-        );
-        // alert(response.data[0].img)
-        setCheeses(response.data); 
-        console.log(response.data)
+  //       setLoading(true);
+  //       const response = await axios.get(
+  //         'http://localhost:8080/api/cheeses'
+  //       );
+  //       // alert(response.data[0].img)
+  //       setCheeses(response.data); 
+  //       console.log(response.data)
 
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    };
+  //     } catch (e) {
+  //       setError(e);
+  //     }
+  //     setLoading(false);
+  //   };
 
-    fetchCheeses();
-  }, []);
+  //   fetchCheeses();
+  // }, []);
 
-  if (loading) return <div>..</div>;
-  if (error) return <div>error</div>;
-  if (!cheeses) return null;
+  // if (loading) return <div>..</div>;
+  // if (error) return <div>error</div>;
+  // if (!cheeses) return null;
   
+    // const dispatch =  useDispatch()
+    // const reivews = useSelector(state => (state.reviewReducer.reivews))
+
+    // useEffect(() => {
+    //     // let stockName = localStorage.getItem('stockName')
+    //     dispatch(reviewActions.getReview(reivews))
+    // }, [])
+
+    const dispatch = useDispatch()
+    const cheeses = useSelector(state => (state.cheeseReducer.cheeses))
+    
+    useEffect(() => {
+      // let cheeses = localStorage.getCheese('cheeses')
+      dispatch(cheeseActions.getCheese(cheeses))
+    }, [])
+
   return (
     <Container>
       <Content>
@@ -96,19 +113,19 @@ export default function Blogs() {
           <HeadingDescription>Some amazing blog posts that are written by even more amazing people.</HeadingDescription>
         </HeadingInfoContainer>
         <ThreeColumn>
-          {cheeses.map(c => (
-            <Column key={c.ranking}>
+          {/* {cheeses.map(c => ( */}
+            <Column>
               <Card>
                 {/* <Image img={cheese.img} />
                 <Category>{cheese.category}</Category> */}
-                <Image imageSrc={c.img}/>
-                <Title>{c.name}</Title>
-                <Contents>{c.brand}</Contents>
-                <Category>{c.content}</Category>
+                <Image imageSrc={cheeses.img}/>
+                <Title>{cheeses.name}</Title>
+                <Contents>{cheeses.brand}</Contents>
+                <Category>{cheeses.content}</Category>
                 {/* <Link href={cheese.content}>Read Post</Link> */}
               </Card>
             </Column>
-          ))}
+          {/* ))} */}
         </ThreeColumn>
       </Content>
       <DecoratorBlob1 />

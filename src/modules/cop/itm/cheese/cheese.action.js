@@ -18,23 +18,23 @@ const initialState = {
 
 // Reducer
 const cheeseReducer = handleActions(
-    { [cheeseConstants.CHEESELIST_SUCCEESS]: (state, action) => ({ cheeses: action.cheeses}) },
+    { [cheeseConstants.CHEESELIST_SUCCEESS]: (state, action) => ({ cheeses: action.cheeses})
+
+},
     initialState
 )
 
 // Action
 export const cheeseActions =  {
-    getAll
-
+    getCheese
 }
-
 ////////////////////// GET /////////////////////
 
-function getAll() {
+function getCheese() {
     return dispatch => {
         dispatch(request());
 
-        cheeseService.getAll()
+        cheeseService.getCheese()
         .then(
             cheeses => {
                 console.log(cheeses)

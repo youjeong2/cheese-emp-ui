@@ -6,11 +6,13 @@ export const reviewService = {
     getReviews
 };
 
-async function getReviews(reviews) {
+async function getReviews() {
     const req = {
         method: c.get,
-        url: `http://localhost:8080/api/reviews/${reviews}`,
+        url: `http://localhost:8080/api/reviews/`,
         // data: {cheese}
+        auth: c.auth
+
     }
     const resp = await axios(req)
 

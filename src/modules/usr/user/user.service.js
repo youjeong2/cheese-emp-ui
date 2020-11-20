@@ -72,11 +72,11 @@ export const userService = {
     return data
   }
   
-  async function register(user_id, password, name, phone, email) {
+  async function register(user) {
     const req = {
         method: c.post,
         url: 'http://192.168.0.21:8080/api/signup',
-        data: {user_id:user_id, password:password, name:name, phone:phone, email:email },
+        data: {user},
         auth: c.auth
     }
     const resp = await axios(req)
