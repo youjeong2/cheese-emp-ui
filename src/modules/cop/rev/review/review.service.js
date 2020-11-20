@@ -3,10 +3,10 @@ import { context as c } from '../../../context'
 
 
 export const reviewService = {
-    getReivew
+    getReviews
 };
 
-async function getReivew(reviews) {
+async function getReviews(reviews) {
     const req = {
         method: c.get,
         url: `http://localhost:8080/api/reviews/${reviews}`,

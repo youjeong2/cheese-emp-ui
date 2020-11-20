@@ -1,9 +1,9 @@
 import { createAction, handleActions } from 'redux-actions';
 import { reviewService } from './review.service'
-import { alertActions } from '../alert.action'
+// import { alertActions } from '../../alert.action'
 
 // Action Types
-import history from '../history'
+// import history from '../history'
 
 export const reviewConstants = {
     REVIEW_REQUEST: 'REVIEW_GET_REQUEST',
@@ -27,15 +27,15 @@ const reviewReducer = handleActions(
 
   //Action
   export const reviewActions = {
-    getReivew
+    getReviews
 
   }
 
-  function getReivew(reviews) {
+  function getReviews(reviews) {
         return dispatch => {
             dispatch(request(reviews))
 
-            reviewService.getReivew(reviews)
+            reviewService.getReviews(reviews)
             .then(
                 reviews => {
                     dispatch(success(reviews))

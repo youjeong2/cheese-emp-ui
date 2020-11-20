@@ -73,6 +73,8 @@ export default function Blogs() {
         );
         // alert(response.data[0].img)
         setCheeses(response.data); 
+        console.log(response.data)
+
       } catch (e) {
         setError(e);
       }
